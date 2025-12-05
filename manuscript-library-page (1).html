@@ -1,0 +1,518 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rare Manuscript Library - eathebook Premium</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #f5f5f5;
+            color: #333;
+        }
+        
+        .header {
+            background: #8B0000;
+            color: white;
+            padding: 1.5rem 2rem;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        
+        .header-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+        
+        .premium-badge {
+            background: #FFD700;
+            color: #8B0000;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-weight: 600;
+        }
+        
+        .page-title {
+            background: linear-gradient(135deg, #2c2c2c 0%, #1a1a1a 100%);
+            color: white;
+            padding: 3rem 2rem;
+            text-align: center;
+        }
+        
+        .page-title h1 {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        .page-title p {
+            font-size: 1.1rem;
+            opacity: 0.9;
+        }
+        
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+        
+        .filters {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 10px;
+            margin-bottom: 2rem;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+        }
+        
+        .filter-row {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+            align-items: center;
+        }
+        
+        .filter-group {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+        
+        .filter-group label {
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: #666;
+        }
+        
+        select, input {
+            padding: 0.6rem;
+            border: 2px solid #e0e0e0;
+            border-radius: 5px;
+            font-size: 1rem;
+        }
+        
+        select:focus, input:focus {
+            outline: none;
+            border-color: #8B0000;
+        }
+        
+        .manuscript-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 2rem;
+        }
+        
+        .manuscript-card {
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+            transition: all 0.3s;
+            cursor: pointer;
+        }
+        
+        .manuscript-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 20px rgba(0,0,0,0.15);
+        }
+        
+        .manuscript-preview {
+            height: 250px;
+            background: linear-gradient(135deg, #2c2c2c, #4a4a4a);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 4rem;
+            position: relative;
+        }
+        
+        .rare-badge {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            background: #FFD700;
+            color: #8B0000;
+            padding: 0.3rem 0.8rem;
+            border-radius: 5px;
+            font-size: 0.8rem;
+            font-weight: 700;
+        }
+        
+        .manuscript-info {
+            padding: 1.5rem;
+        }
+        
+        .manuscript-title {
+            font-size: 1.3rem;
+            color: #8B0000;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+        }
+        
+        .manuscript-subtitle {
+            color: #666;
+            font-size: 0.95rem;
+            margin-bottom: 1rem;
+            font-style: italic;
+        }
+        
+        .manuscript-meta {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            font-size: 0.9rem;
+            color: #777;
+            margin-bottom: 1rem;
+        }
+        
+        .meta-item {
+            display: flex;
+            align-items: center;
+            gap: 0.3rem;
+        }
+        
+        .manuscript-description {
+            color: #555;
+            line-height: 1.6;
+            margin-bottom: 1rem;
+        }
+        
+        .tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+        
+        .tag {
+            background: #f0f0f0;
+            padding: 0.3rem 0.7rem;
+            border-radius: 15px;
+            font-size: 0.85rem;
+            color: #666;
+        }
+        
+        .stats-banner {
+            background: white;
+            padding: 2rem;
+            border-radius: 10px;
+            margin-bottom: 2rem;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+        }
+        
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            text-align: center;
+        }
+        
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: #8B0000;
+        }
+        
+        .stat-label {
+            color: #666;
+            margin-top: 0.5rem;
+        }
+        
+        .cta-box {
+            background: linear-gradient(135deg, #8B0000, #B22222);
+            color: white;
+            padding: 2rem;
+            border-radius: 10px;
+            text-align: center;
+            margin: 3rem 0;
+        }
+        
+        .cta-box h3 {
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+        }
+        
+        .btn {
+            display: inline-block;
+            padding: 0.8rem 2rem;
+            background: white;
+            color: #8B0000;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: 600;
+            margin-top: 1rem;
+            transition: all 0.3s;
+        }
+        
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+        }
+        
+        @media (max-width: 768px) {
+            .manuscript-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .page-title h1 {
+                font-size: 1.8rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <div class="header-content">
+            <div class="logo">✝ eathebook</div>
+            <div class="premium-badge">★ Premium Library</div>
+        </div>
+    </div>
+    
+    <div class="page-title">
+        <h1>Rare Manuscript Collection</h1>
+        <p>Access digitized manuscripts and texts not available anywhere else online</p>
+    </div>
+    
+    <div class="container">
+        <div class="stats-banner">
+            <div class="stats-grid">
+                <div>
+                    <div class="stat-number">127</div>
+                    <div class="stat-label">Rare Manuscripts</div>
+                </div>
+                <div>
+                    <div class="stat-number">14th-20th</div>
+                    <div class="stat-label">Century Range</div>
+                </div>
+                <div>
+                    <div class="stat-number">45</div>
+                    <div class="stat-label">Contributing Scholars</div>
+                </div>
+                <div>
+                    <div class="stat-number">New Weekly</div>
+                    <div class="stat-label">Additions</div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="filters">
+            <div class="filter-row">
+                <div class="filter-group">
+                    <label>Category</label>
+                    <select>
+                        <option>All Categories</option>
+                        <option>Liturgical Texts</option>
+                        <option>Theological Commentaries</option>
+                        <option>Haymanot Literature</option>
+                        <option>Historical Documents</option>
+                        <option>Qene Poetry</option>
+                        <option>Biblical Manuscripts</option>
+                    </select>
+                </div>
+                
+                <div class="filter-group">
+                    <label>Time Period</label>
+                    <select>
+                        <option>All Periods</option>
+                        <option>Medieval (1300-1500)</option>
+                        <option>Gondarine (1600-1800)</option>
+                        <option>Modern (1800-1900)</option>
+                        <option>Contemporary (1900+)</option>
+                    </select>
+                </div>
+                
+                <div class="filter-group">
+                    <label>Language</label>
+                    <select>
+                        <option>Ge'ez</option>
+                        <option>Amharic</option>
+                        <option>Both</option>
+                    </select>
+                </div>
+                
+                <div class="filter-group">
+                    <label>Search</label>
+                    <input type="text" placeholder="Title, author, keyword...">
+                </div>
+            </div>
+        </div>
+        
+        <div class="manuscript-grid">
+            <div class="manuscript-card">
+                <div class="manuscript-preview">
+                    <div class="rare-badge">RARE</div>
+                    📜
+                </div>
+                <div class="manuscript-info">
+                    <h3 class="manuscript-title">Andemta Commentary on Genesis</h3>
+                    <p class="manuscript-subtitle">በርሃና ሰላም፡ ዘፍጥረት፡ አንድምታ</p>
+                    <div class="manuscript-meta">
+                        <span class="meta-item">📅 17th Century</span>
+                        <span class="meta-item">📍 Gondar</span>
+                        <span class="meta-item">✍️ Abba Giyorgis</span>
+                    </div>
+                    <p class="manuscript-description">
+                        Comprehensive spiritual interpretation of Genesis 1-11 using threefold Andemta methodology. Includes marginal notes from multiple scribes and rare liturgical connections.
+                    </p>
+                    <div class="tags">
+                        <span class="tag">Andemta</span>
+                        <span class="tag">Biblical</span>
+                        <span class="tag">Ge'ez</span>
+                        <span class="tag">Fully Transcribed</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="manuscript-card">
+                <div class="manuscript-preview">
+                    <div class="rare-badge">EXCLUSIVE</div>
+                    🎵
+                </div>
+                <div class="manuscript-info">
+                    <h3 class="manuscript-title">Regional Liturgical Variations: Wollo</h3>
+                    <p class="manuscript-subtitle">የዎሎ፡ ቅዳሴ፡ ልዩነቶች</p>
+                    <div class="manuscript-meta">
+                        <span class="meta-item">📅 19th Century</span>
+                        <span class="meta-item">📍 Wollo</span>
+                        <span class="meta-item">✍️ Multiple Authors</span>
+                    </div>
+                    <p class="manuscript-description">
+                        Documentation of unique liturgical practices and musical notations from Wollo monasteries. Includes audio recordings from the 1960s alongside manuscript text.
+                    </p>
+                    <div class="tags">
+                        <span class="tag">Liturgy</span>
+                        <span class="tag">Music</span>
+                        <span class="tag">Regional</span>
+                        <span class="tag">Audio Included</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="manuscript-card">
+                <div class="manuscript-preview">
+                    <div class="rare-badge">NEW</div>
+                    ✍️
+                </div>
+                <div class="manuscript-info">
+                    <h3 class="manuscript-title">Qene Masterworks of Aleqa Taye</h3>
+                    <p class="manuscript-subtitle">የአለቃ፡ ታዬ፡ ቅኔ፡ ስብስብ</p>
+                    <div class="manuscript-meta">
+                        <span class="meta-item">📅 Early 20th Century</span>
+                        <span class="meta-item">📍 Addis Ababa</span>
+                        <span class="meta-item">✍️ Aleqa Taye Gabra Mariam</span>
+                    </div>
+                    <p class="manuscript-description">
+                        Complete collection of qene poetry from one of Ethiopia's most celebrated modern poets. Includes handwritten drafts with revisions showing creative process.
+                    </p>
+                    <div class="tags">
+                        <span class="tag">Qene</span>
+                        <span class="tag">Poetry</span>
+                        <span class="tag">Modern</span>
+                        <span class="tag">Annotated</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="manuscript-card">
+                <div class="manuscript-preview">
+                    <div class="rare-badge">RARE</div>
+                    ⛪
+                </div>
+                <div class="manuscript-info">
+                    <h3 class="manuscript-title">Christological Debates: Council Letters</h3>
+                    <p class="manuscript-subtitle">የክርስቶሎጂ፡ ውይይቶች፡ ደብዳቤዎች</p>
+                    <div class="manuscript-meta">
+                        <span class="meta-item">📅 16th Century</span>
+                        <span class="meta-item">📍 Aksum</span>
+                        <span class="meta-item">✍️ Church Council</span>
+                    </div>
+                    <p class="manuscript-description">
+                        Primary source documents from theological councils addressing Christological controversies. Essential for understanding Ethiopian Orthodox doctrinal development.
+                    </p>
+                    <div class="tags">
+                        <span class="tag">Theology</span>
+                        <span class="tag">Historical</span>
+                        <span class="tag">Christology</span>
+                        <span class="tag">Primary Source</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="manuscript-card">
+                <div class="manuscript-preview">
+                    <div class="rare-badge">EXCLUSIVE</div>
+                    📖
+                </div>
+                <div class="manuscript-info">
+                    <h3 class="manuscript-title">Synaxarium: Unpublished Saint Lives</h3>
+                    <p class="manuscript-subtitle">ስንክሳር፡ ያልታተሙ፡ ቅዱሳን</p>
+                    <div class="manuscript-meta">
+                        <span class="meta-item">📅 18th Century</span>
+                        <span class="meta-item">📍 Tigray</span>
+                        <span class="meta-item">✍️ Monastic Scribes</span>
+                    </div>
+                    <p class="manuscript-description">
+                        Hagiographies of local Ethiopian saints not included in standard Synaxarium publications. Rich source for regional religious history and popular devotion.
+                    </p>
+                    <div class="tags">
+                        <span class="tag">Hagiography</span>
+                        <span class="tag">Saints</span>
+                        <span class="tag">Unpublished</span>
+                        <span class="tag">Regional</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="manuscript-card">
+                <div class="manuscript-preview">
+                    <div class="rare-badge">NEW</div>
+                    🕊️
+                </div>
+                <div class="manuscript-info">
+                    <h3 class="manuscript-title">Anaphora of St. Gregory: Theological Analysis</h3>
+                    <p class="manuscript-subtitle">የቅዱስ፡ ግርጎሪዎስ፡ አናፎራ፡ ትንታኔ</p>
+                    <div class="manuscript-meta">
+                        <span class="meta-item">📅 2023 (Contemporary)</span>
+                        <span class="meta-item">📍 Addis Ababa</span>
+                        <span class="meta-item">✍️ Memhir Tekle Haymanot</span>
+                    </div>
+                    <p class="manuscript-description">
+                        Modern scholarly analysis comparing Ge'ez, Greek, and Coptic versions with theological commentary. Includes linguistic notes and liturgical context.
+                    </p>
+                    <div class="tags">
+                        <span class="tag">Liturgy</span>
+                        <span class="tag">Theology</span>
+                        <span class="tag">Contemporary</span>
+                        <span class="tag">Comparative</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="cta-box">
+            <h3>Unlock the Complete Manuscript Library</h3>
+            <p style="font-size: 1.1rem; margin-bottom: 1rem;">
+                Premium membership gives you full access to 127 rare manuscripts, weekly additions, downloadable PDFs, and scholar annotations
+            </p>
+            <p style="font-size: 1.3rem; font-weight: 600; margin-bottom: 0.5rem;">
+                $12/month or $120/year
+            </p>
+            <a href="#" class="btn">Start 7-Day Free Trial</a>
+            <p style="margin-top: 1rem; font-size: 0.9rem; opacity: 0.9;">
+                Also includes: Full audio library • Expert seminars • Certificate program eligibility
+            </p>
+        </div>
+    </div>
+</body>
+</html>
