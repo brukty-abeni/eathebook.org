@@ -1,0 +1,577 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>eathebook - Understanding Ethiopian Orthodox Faith</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            color: #333;
+            line-height: 1.6;
+        }
+        
+        /* Navigation */
+        nav {
+            background: #8B0000;
+            color: white;
+            padding: 1rem 2rem;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+        
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            transition: opacity 0.3s;
+        }
+        
+        .nav-links a:hover {
+            opacity: 0.8;
+        }
+        
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, #8B0000 0%, #B22222 100%);
+            color: white;
+            padding: 4rem 2rem;
+            text-align: center;
+        }
+        
+        .hero-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .hero h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+        
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+        }
+        
+        .cta-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        
+        .btn {
+            padding: 0.8rem 2rem;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s;
+            cursor: pointer;
+            border: none;
+            font-size: 1rem;
+        }
+        
+        .btn-primary {
+            background: white;
+            color: #8B0000;
+        }
+        
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 20px rgba(0,0,0,0.2);
+        }
+        
+        .btn-secondary {
+            background: transparent;
+            color: white;
+            border: 2px solid white;
+        }
+        
+        .btn-secondary:hover {
+            background: white;
+            color: #8B0000;
+        }
+        
+        /* Featured Content */
+        .featured {
+            padding: 3rem 2rem;
+            background: #f8f9fa;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .section-title {
+            text-align: center;
+            font-size: 2rem;
+            margin-bottom: 2rem;
+            color: #8B0000;
+        }
+        
+        .content-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+        
+        .content-card {
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            transition: transform 0.3s;
+            cursor: pointer;
+        }
+        
+        .content-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 20px rgba(0,0,0,0.15);
+        }
+        
+        .card-image {
+            width: 100%;
+            height: 200px;
+            background: linear-gradient(135deg, #8B0000, #B22222);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 3rem;
+        }
+        
+        .card-content {
+            padding: 1.5rem;
+        }
+        
+        .card-title {
+            font-size: 1.3rem;
+            margin-bottom: 0.5rem;
+            color: #8B0000;
+        }
+        
+        .card-description {
+            color: #666;
+            margin-bottom: 1rem;
+        }
+        
+        .card-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 0.9rem;
+            color: #999;
+        }
+        
+        .badge {
+            background: #FFD700;
+            color: #8B0000;
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+        
+        /* Learning Paths */
+        .paths {
+            padding: 3rem 2rem;
+            background: white;
+        }
+        
+        .path-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+        
+        .path-card {
+            border: 2px solid #e0e0e0;
+            border-radius: 10px;
+            padding: 2rem;
+            text-align: center;
+            transition: all 0.3s;
+        }
+        
+        .path-card:hover {
+            border-color: #8B0000;
+            background: #fef5f5;
+        }
+        
+        .path-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+        
+        .path-title {
+            font-size: 1.3rem;
+            color: #8B0000;
+            margin-bottom: 1rem;
+        }
+        
+        .path-description {
+            color: #666;
+            margin-bottom: 1.5rem;
+        }
+        
+        .path-link {
+            color: #8B0000;
+            text-decoration: none;
+            font-weight: 600;
+        }
+        
+        /* Testimonials */
+        .testimonials {
+            padding: 3rem 2rem;
+            background: #f8f9fa;
+        }
+        
+        .testimonial-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+        
+        .testimonial {
+            background: white;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+        }
+        
+        .testimonial-text {
+            font-style: italic;
+            color: #555;
+            margin-bottom: 1rem;
+        }
+        
+        .testimonial-author {
+            font-weight: 600;
+            color: #8B0000;
+        }
+        
+        /* Footer */
+        footer {
+            background: #2c2c2c;
+            color: white;
+            padding: 2rem;
+            text-align: center;
+        }
+        
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-bottom: 1rem;
+            flex-wrap: wrap;
+        }
+        
+        .footer-links a {
+            color: white;
+            text-decoration: none;
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2rem;
+            }
+            
+            .nav-links {
+                display: none;
+            }
+            
+            .content-grid,
+            .path-cards,
+            .testimonial-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        /* Quick Stats */
+        .stats {
+            background: #8B0000;
+            color: white;
+            padding: 2rem;
+        }
+        
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            text-align: center;
+        }
+        
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: bold;
+        }
+        
+        .stat-label {
+            font-size: 1rem;
+            opacity: 0.9;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <div class="nav-container">
+            <div class="logo">
+                <span>✝</span>
+                <span>eathebook</span>
+            </div>
+            <ul class="nav-links">
+                <li><a href="#discover">Discover</a></li>
+                <li><a href="#courses">Courses</a></li>
+                <li><a href="#library">Library</a></li>
+                <li><a href="#community">Community</a></li>
+                <li><a href="#about">About</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Where Knowledge Seekers Meet Orthodox Scholars</h1>
+            <p>From engaged explorer to advanced theologian - a comprehensive platform for serious Orthodox learning</p>
+            <div class="cta-buttons">
+                <a href="#" class="btn btn-primary">Explore Free Content</a>
+                <a href="#" class="btn btn-secondary">See Rare Manuscripts</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Quick Stats -->
+    <section class="stats">
+        <div class="container">
+            <div class="stats-grid">
+                <div>
+                    <div class="stat-number">100+</div>
+                    <div class="stat-label">Rare Manuscripts</div>
+                </div>
+                <div>
+                    <div class="stat-number">26K+</div>
+                    <div class="stat-label">Scholar Network</div>
+                </div>
+                <div>
+                    <div class="stat-number">200+</div>
+                    <div class="stat-label">Hours Liturgical Audio</div>
+                </div>
+                <div>
+                    <div class="stat-number">Beyond</div>
+                    <div class="stat-label">Mainstream Resources</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Featured Content -->
+    <section class="featured" id="discover">
+        <div class="container">
+            <h2 class="section-title">Gateway to Deeper Knowledge</h2>
+            <p style="text-align: center; color: #666; max-width: 700px; margin: 0 auto;">
+                Explore beyond surface-level understanding with content that respects your intelligence
+            </p>
+            
+            <div class="content-grid">
+                <div class="content-card">
+                    <div class="card-image">⛪</div>
+                    <div class="card-content">
+                        <h3 class="card-title">The Five Anaphoras: Theological Distinctions</h3>
+                        <p class="card-description">Deep dive into the Christological and liturgical differences between the Anaphoras of the Apostles, Athanasius, Basil, Gregory, and Cyril</p>
+                        <div class="card-meta">
+                            <span>⏱️ 18 minutes</span>
+                            <span class="badge">Scholarly</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="content-card">
+                    <div class="card-image">📜</div>
+                    <div class="card-content">
+                        <h3 class="card-title">Andemta: Spiritual Interpretation of Scripture</h3>
+                        <p class="card-description">Understanding the threefold interpretive tradition unique to Ethiopian Orthodoxy with examples from commentaries</p>
+                        <div class="card-meta">
+                            <span>⏱️ 25 minutes</span>
+                            <span class="badge">New</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="content-card">
+                    <div class="card-image">✍️</div>
+                    <div class="card-content">
+                        <h3 class="card-title">Qene Poetry: Wax and Gold Explained</h3>
+                        <p class="card-description">Master the art of Ethiopian liturgical poetry with examples from masters, linguistic analysis, and practice exercises</p>
+                        <div class="card-meta">
+                            <span>⏱️ 22 minutes</span>
+                            <span class="badge">Interactive</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Learning Paths -->
+    <section class="paths" id="courses">
+        <div class="container">
+            <h2 class="section-title">Multi-Level Learning Ecosystem</h2>
+            
+            <div class="path-cards">
+                <div class="path-card">
+                    <div class="path-icon">🔍</div>
+                    <h3 class="path-title">Gateway Layer</h3>
+                    <p class="path-description">Free explainer videos, liturgy walkthroughs, and community Q&A with scholars. Begin your journey into theological depth.</p>
+                    <a href="#" class="path-link">Explore Free →</a>
+                </div>
+                
+                <div class="path-card">
+                    <div class="path-icon">🎓</div>
+                    <h3 class="path-title">Structured Courses</h3>
+                    <p class="path-description">8-16 week certificate programs in Liturgy, Theology, Ge'ez Language, and Church History taught by recognized scholars.</p>
+                    <a href="#" class="path-link">View Programs →</a>
+                </div>
+                
+                <div class="path-card">
+                    <div class="path-icon">📚</div>
+                    <h3 class="path-title">Scholarly Repository</h3>
+                    <p class="path-description">Access 100+ rare manuscripts, unpublished research, advanced seminars, and scholar forums. Beyond mainstream resources.</p>
+                    <a href="#" class="path-link">Premium Access →</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Featured Course Preview -->
+    <section class="featured">
+        <div class="container">
+            <h2 class="section-title">Featured Certificate: Advanced Liturgical Theology</h2>
+            <p style="text-align: center; color: #666; max-width: 700px; margin: 0 auto 2rem;">
+                A 6-month deep dive into Ethiopian Orthodox liturgical tradition, theology, and practice
+            </p>
+            
+            <div style="max-width: 800px; margin: 0 auto; background: white; padding: 2rem; border-radius: 10px; box-shadow: 0 2px 20px rgba(0,0,0,0.1);">
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 2rem;">
+                    <div>
+                        <h4 style="color: #8B0000; margin-bottom: 1rem;">What You'll Master:</h4>
+                        <ul style="line-height: 2; color: #555;">
+                            <li>Theological depth of all five Anaphoras</li>
+                            <li>Christological controversies & Ethiopian positions</li>
+                            <li>Sacramental theology and practice</li>
+                            <li>Liturgical calendar and computation</li>
+                            <li>Original Ge'ez text analysis</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h4 style="color: #8B0000; margin-bottom: 1rem;">Program Details:</h4>
+                        <ul style="line-height: 2; color: #555; list-style: none;">
+                            <li>⏱️ 6 months, 40+ hours instruction</li>
+                            <li>👨‍🏫 Taught by recognized scholars</li>
+                            <li>📝 Weekly assignments with feedback</li>
+                            <li>👥 Cohort discussions</li>
+                            <li>🎓 Verified certificate</li>
+                            <li>💰 $150 total investment</li>
+                        </ul>
+                    </div>
+                </div>
+                <div style="text-align: center; margin-top: 2rem;">
+                    <a href="#" class="btn btn-primary">View Full Curriculum</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials -->
+    <section class="testimonials">
+        <div class="container">
+            <h2 class="section-title">Voices from the Community</h2>
+            
+            <div class="testimonial-grid">
+                <div class="testimonial">
+                    <p class="testimonial-text">"I've studied Orthodoxy independently for years, but this platform gave me structure and access to manuscripts I couldn't find anywhere else. The certificate program transformed my understanding."</p>
+                    <p class="testimonial-author">— Deacon Yohannes, London</p>
+                </div>
+                
+                <div class="testimonial">
+                    <p class="testimonial-text">"As a scholar, I finally have a platform where my research reaches motivated learners. The community asks thoughtful questions that push my own thinking deeper."</p>
+                    <p class="testimonial-author">— Memhir Tekle, Addis Ababa</p>
+                </div>
+                
+                <div class="testimonial">
+                    <p class="testimonial-text">"The rare Ge'ez manuscripts and audio collection are invaluable. This is preservation of our heritage and education combined. Every serious student needs access to this."</p>
+                    <p class="testimonial-author">— Dr. Amare, Seminary Professor</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section style="background: linear-gradient(135deg, #8B0000, #B22222); color: white; padding: 4rem 2rem; text-align: center;">
+        <div class="container">
+            <h2 style="font-size: 2rem; margin-bottom: 1rem;">Join Scholars, Clergy, and Serious Learners</h2>
+            <p style="font-size: 1.2rem; margin-bottom: 2rem; opacity: 0.9;">Access rare manuscripts, structured courses, and a community of depth-seekers</p>
+            <div class="cta-buttons">
+                <a href="#" class="btn btn-primary">Start with Free Content</a>
+                <a href="#" class="btn btn-secondary">View Premium Library</a>
+            </div>
+            <p style="margin-top: 1.5rem; font-size: 0.9rem; opacity: 0.8;">
+                For scholars: <a href="#" style="color: #FFD700; text-decoration: underline;">Share your research</a> | 
+                For institutions: <a href="#" style="color: #FFD700; text-decoration: underline;">Partnership inquiries</a>
+            </p>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-links">
+            <a href="#">About Us</a>
+            <a href="#">Contact</a>
+            <a href="#">Privacy</a>
+            <a href="#">Terms</a>
+            <a href="#">Support</a>
+            <a href="#">Donate</a>
+        </div>
+        <p>&copy; 2025 eathebook.org - Understanding Ethiopian Orthodox Faith</p>
+        <p style="margin-top: 0.5rem; opacity: 0.7; font-size: 0.9rem;">
+            A ministry of accessible Orthodox education
+        </p>
+    </footer>
+</body>
+</html>
